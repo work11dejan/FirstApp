@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         timeLeftTextView = findViewById(R.id.timeLeftTextView)
 
         tapMeButton.setOnClickListener { view ->
+            val bounceAnimation = AnimationUtils.loadAnimation(this,R.anim.bounce)
+            view.startAnimation(bounceAnimation)
             incrementScore()
         }
 
@@ -126,6 +129,9 @@ class MainActivity : AppCompatActivity() {
        score+=1
         val newScore = getString(R.string.yourScore, score)
         gameScoreTextView.text = newScore
+
+        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
+        gameScoreTextView.startAnimation(blinkAnimation)
     }
 
 
