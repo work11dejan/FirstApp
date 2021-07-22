@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     internal lateinit var tapMeButton : Button
     internal var    gameStarted = false
 
+    internal lateinit var newButton:Button
+    internal lateinit var btDejan:Button
+
     internal lateinit var countDownTimer: CountDownTimer
     internal val initialCountDown : Long = 60000
     internal val countDownInterval : Long = 1000
@@ -45,10 +48,16 @@ class MainActivity : AppCompatActivity() {
         tapMeButton = findViewById(R.id.tapMeButton)
         gameScoreTextView = findViewById(R.id.gameScoreTextView)
         timeLeftTextView = findViewById(R.id.timeLeftTextView)
+        newButton = findViewById<Button>(R.id.newButton)
+        btDejan = findViewById(R.id.btDejan)
 
         tapMeButton.setOnClickListener { view ->
             bounce(view)
             incrementScore()
+        }
+        newButton.setOnClickListener{view ->
+            zoomIn(btDejan)
+
         }
 
         if (savedInstanceState!=null){
@@ -73,6 +82,12 @@ class MainActivity : AppCompatActivity() {
             R.id.actionBlink -> blink(tapMeButton)
         }
         return true
+    }
+
+
+    private fun zoomIn(view: View){
+        val zoomIn = AnimationUtils.loadAnimation(this, R.anim.newanim)
+        view.startAnimation(zoomIn)
     }
 
     private fun blink(view: View) {

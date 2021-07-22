@@ -8,4 +8,6 @@
     <string name="aboutTitle">Time Fighter</string>
     <string name="aboutMessage">Created by ArgosTheBeast owener</string>
     <string name="aboutMenu1">iteam1</string>
+    <string name="newBut">NewAnimButton</string>
+    <string name="btDejan">Dejan</string>
 </resources>

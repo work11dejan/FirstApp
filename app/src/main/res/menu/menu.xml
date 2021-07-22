@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/actionAbout"
-        android:icon="@android:drawable/ic_dialog_info"
+        android:icon="@drawable/ic_baseline_perm_device_information_24"
         android:title="@string/aboutMenu"
         app:showAsAction="always" />
     <item
         android:id="@+id/actionBounce"
-        android:icon="@drawable/ic_baseline_bubble_chart_24"
+        android:icon="@drawable/ic_baseline_sports_volleyball_24"
         android:title="@string/aboutMenu1"
         app:showAsAction="always" />
     <item
         android:id="@+id/actionBlink"
-        android:icon="@android:drawable/presence_audio_away"
+        android:icon="@drawable/ic_baseline_theaters_24"
         android:title="actionBlink"
         app:showAsAction="always" />
 </menu>
