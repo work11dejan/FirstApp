@@ -3,15 +3,15 @@ package com.omega.praksa.firstapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.PersistableBundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.tabs.TabLayout
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,8 +47,7 @@ class MainActivity : AppCompatActivity() {
         timeLeftTextView = findViewById(R.id.timeLeftTextView)
 
         tapMeButton.setOnClickListener { view ->
-            val bounceAnimation = AnimationUtils.loadAnimation(this,R.anim.bounce)
-            view.startAnimation(bounceAnimation)
+            bounce(view)
             incrementScore()
         }
 
@@ -59,6 +58,42 @@ class MainActivity : AppCompatActivity() {
         }else{
             resetGame()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.actionAbout -> showInfo()
+            R.id.actionBounce -> bounce(tapMeButton)
+            R.id.actionBlink -> blink(tapMeButton)
+        }
+        return true
+    }
+
+    private fun blink(view: View) {
+        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
+        view.startAnimation(blinkAnimation)
+    }
+
+
+    private fun bounce(view: View){
+        val bounceAnimation = AnimationUtils.loadAnimation(this,R.anim.bounce)
+        view.startAnimation(bounceAnimation)
+    }
+
+    private fun showInfo(){
+        val dialogTitle = "Time Fighter"
+        val dialogMessage = "Created by Argos The Beast Owner"
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(dialogTitle)
+        builder.setMessage(dialogMessage)
+        builder.create().show()
     }
         //var konj = findViewById<Button>(R.id.btDejan)
         //konj.text = "Dorat"
@@ -130,8 +165,7 @@ class MainActivity : AppCompatActivity() {
         val newScore = getString(R.string.yourScore, score)
         gameScoreTextView.text = newScore
 
-        val blinkAnimation = AnimationUtils.loadAnimation(this, R.anim.blink)
-        gameScoreTextView.startAnimation(blinkAnimation)
+       blink(gameScoreTextView)
     }
 
 
